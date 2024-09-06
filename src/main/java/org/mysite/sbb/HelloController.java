@@ -11,4 +11,9 @@ public class HelloController {
     public String hello(){
         return "Hello Spring Boot Board";
     }
+    @GetMapping("/jump")
+    @ResponseBody
+    public String helloJump(){
+        return "점프 투 스프링 부트";
+    }
 }

@@ -17,12 +17,12 @@ class SbbApplicationTests {
     private QuestionRepository questionRepository;
 
     @Test
-    void contextLoads() {
-        Optional<Question> oq = this.questionRepository.findById(1);
-        if(oq.isPresent()){
-            Question q = oq.get();
-            assertEquals("sbb가 무엇인가요?", q.getSubject());
-        }
+    void testJpa(){
+       List<Question> all = this.questionRepository.findAll();
+       assertEquals(8, all.size());
+
+       Question q = all.get(0);
+       assertEquals("sbb가 무엇인가요? ",q.getSubject());
     }
 
 }
