@@ -18,11 +18,18 @@ class SbbApplicationTests {
 
     @Test
     void testJpa(){
-       List<Question> all = this.questionRepository.findAll();
-       assertEquals(8, all.size());
+       Question q1 = new Question();
+       q1.setSubject("sbb가 무엇인가요?");
+       q1.setContect("sbb에 대해서 알고 싶습니다");
+       q1.setCreateDate(LocalDateTime.now());
+       this.questionRepository.save(q1);
 
-       Question q = all.get(0);
-       assertEquals("sbb가 무엇인가요? ",q.getSubject());
+       Question q2 = new Question();
+        q2.setSubject("스프링 부트 모델 질문입니다.");
+        q2.setContect("id는 자동으로 생성되나요? ");
+        q2.setCreateDate(LocalDateTime.now());
+        this.questionRepository.save(q2);
+
     }
 
 }
