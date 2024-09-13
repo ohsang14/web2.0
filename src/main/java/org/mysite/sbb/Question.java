@@ -12,17 +12,17 @@ import java.util.List;
 @Setter
 @Entity
 public class Question {
-    @Id
+    @Id // 질문 고유번호
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(length = 200)
-    private String subject;
+    private String subject; // 질문 제목
 
     @Column(columnDefinition =  "TEXT")
-    private String contect;
+    private String contect; // 질문 내용
 
-    private LocalDateTime createDate;
+    private LocalDateTime createDate; // 질문 등록 날짜 및 시각
 
     @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
     private List<Answer> answerList;
