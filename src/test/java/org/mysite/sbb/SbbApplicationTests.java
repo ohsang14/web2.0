@@ -1,13 +1,16 @@
 package org.mysite.sbb;
 
 import org.junit.jupiter.api.Test;
+import org.mysite.sbb.answer.Answer;
+import org.mysite.sbb.answer.AnswerRepository;
+import org.mysite.sbb.question.Question;
+import org.mysite.sbb.question.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
-import java.util.Queue;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -191,7 +194,7 @@ class SbbApplicationTests {
         assertEquals(2, a.getQuestion().getId());
     }
 
-    // @Test
+    @Test
     void testJpa11() {
         Optional<Question> oq = this.questionRepository.findById(2);
         assertTrue(oq.isPresent());
