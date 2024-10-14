@@ -29,13 +29,13 @@ class SbbApplicationTests {
 
     @Test
     void testJpa01() {
-        Question q1 = new Question();
-        q1.setId(1);
-        q1.setSubject("sbb가 무엇인가요?");
-        q1.setContect("sbb에 대해서 알고 싶습니다.");
-        q1.setCreateDate(LocalDateTime.now());
-
-        this.questionRepository.save(q1);
+//        Question q1 = new Question();
+//        q1.setId(1);
+//        q1.setSubject("sbb가 무엇인가요?");
+//        q1.setContect("sbb에 대해서 알고 싶습니다.");
+//        q1.setCreateDate(LocalDateTime.now());
+//
+//        this.questionRepository.save(q1);
 
 
         Question q2 = new Question();
@@ -45,6 +45,18 @@ class SbbApplicationTests {
         q2.setCreateDate(LocalDateTime.now());
 
         this.questionRepository.save(q2);
+
+        for (int i = 0; i < 3; i++) {
+
+            Question q = new Question();
+            q.setId(i);
+            q.setSubject("스프링 부트 모델 질문 ."+(i+1));
+            q.setContect("id는 자동으로 생성되나요?"+(i+1));
+            q.setCreateDate(LocalDateTime.now());
+
+            this.questionRepository.save(q);
+
+        }
     }
 
     @Test
