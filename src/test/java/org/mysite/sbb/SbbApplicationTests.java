@@ -32,7 +32,7 @@ class SbbApplicationTests {
 //        Question q1 = new Question();
 //        q1.setId(1);
 //        q1.setSubject("sbb가 무엇인가요?");
-//        q1.setContect("sbb에 대해서 알고 싶습니다.");
+//        q1.setContent("sbb에 대해서 알고 싶습니다.");
 //        q1.setCreateDate(LocalDateTime.now());
 //
 //        this.questionRepository.save(q1);
@@ -41,7 +41,7 @@ class SbbApplicationTests {
         Question q2 = new Question();
         q2.setId(2);
         q2.setSubject("스프링 부트 모델 질문 입니다.");
-        q2.setContect("id는 자동으로 생성되나요?");
+        q2.setContent("id는 자동으로 생성되나요?");
         q2.setCreateDate(LocalDateTime.now());
 
         this.questionRepository.save(q2);
@@ -51,7 +51,7 @@ class SbbApplicationTests {
             Question q = new Question();
             q.setId(i);
             q.setSubject("스프링 부트 모델 질문 ."+(i+1));
-            q.setContect("id는 자동으로 생성되나요?"+(i+1));
+            q.setContent("id는 자동으로 생성되나요?"+(i+1));
             q.setCreateDate(LocalDateTime.now());
 
             this.questionRepository.save(q);
@@ -101,7 +101,7 @@ class SbbApplicationTests {
 
     @Test
     void testJpa05() {
-        Question q = this.questionRepository.findBySubjectAndContect("sbb가 무엇인가요?", "sbb에 대해서 알고 싶습니다.");
+        Question q = this.questionRepository.findBySubjectAndContent("sbb가 무엇인가요?", "sbb에 대해서 알고 싶습니다.");
         assertEquals(1, q.getId());
     }
 

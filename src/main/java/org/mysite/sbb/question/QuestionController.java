@@ -26,7 +26,9 @@ public class QuestionController {
 
     @GetMapping(value = "/detail/{id}")
     public String detail(Model model, @PathVariable("id") Integer id) {
+        // id에 해당하는 Question 객체를 DB에서 인출하고
         Question question = this.questionService.getQuestion(id);
+        // 그 객체를 model에 넣어준다.
         model.addAttribute("question", question);
         return "question_detail";
     }

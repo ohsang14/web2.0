@@ -13,14 +13,17 @@ public class QuestionService {
 
     private final QuestionRepository questionRepository;
 
-    public List<Question> getList(){
+    public List<Question> getList() {
         return this.questionRepository.findAll();
     }
-    public Question getQuestion(Integer id){
+
+    // 주어진 id에 해당하는 레코드를 Question 테이블에서 인출해
+    //
+    public Question getQuestion(Integer id) {
         Optional<Question> question = this.questionRepository.findById(id);
-        if(question.isPresent()){
-            return  question.get();
-        }else{
+        if (question.isPresent()) {
+            return question.get();
+        } else {
             throw new DataNotFoundException("question not found");
         }
     }

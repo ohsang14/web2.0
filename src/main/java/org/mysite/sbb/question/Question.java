@@ -20,7 +20,7 @@ public class Question {
     private String subject; // 질문 제목
 
     @Column(columnDefinition =  "TEXT")
-    private String contect; // 질문 내용
+    private String content; // 질문 내용, 수정된 부분
 
     private LocalDateTime createDate; // 질문 등록 날짜 및 시각
 
