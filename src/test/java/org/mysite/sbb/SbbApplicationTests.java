@@ -5,6 +5,7 @@ import org.mysite.sbb.answer.Answer;
 import org.mysite.sbb.answer.AnswerRepository;
 import org.mysite.sbb.question.Question;
 import org.mysite.sbb.question.QuestionRepository;
+import org.mysite.sbb.question.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -26,6 +27,9 @@ class SbbApplicationTests {
     // DI (Dependency Injection) 받는다.
     @Autowired
     private AnswerRepository answerRepository;
+
+    @Autowired
+    private QuestionService questionService;
 
     @Test
     void testJpa01() {
@@ -50,8 +54,8 @@ class SbbApplicationTests {
 
             Question q = new Question();
             q.setId(i);
-            q.setSubject("스프링 부트 모델 질문 ."+(i+1));
-            q.setContent("id는 자동으로 생성되나요?"+(i+1));
+            q.setSubject("스프링 부트 모델 질문 ." + (i + 1));
+            q.setContent("id는 자동으로 생성되나요?" + (i + 1));
             q.setCreateDate(LocalDateTime.now());
 
             this.questionRepository.save(q);
@@ -217,5 +221,14 @@ class SbbApplicationTests {
         assertEquals(1, answerList.size());
         assertEquals("네 자동으로 생성됩니다.", answerList.get(0).getContent());
 
+    }
+
+    @Test
+    void seedingQuestionTable() {
+        for (int i = 0; i <= 300; i++) {
+            String subject = String.format("테스트 데이터입니다:[%03d]", i);
+            String content = "내용 없음";
+            this.questionService.create(subject, content);
+        }
     }
 }
