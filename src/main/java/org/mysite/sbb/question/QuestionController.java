@@ -18,10 +18,12 @@ public class QuestionController {
 
     private final QuestionService questionService;
 
+    // http://localhost:8080/question/list?page=1
+    // @RequestParam =요청이 들어오면 값 할당. (바인딩)
     @GetMapping("/list")
-    public String list(Model model, @RequestParam(value = "page", defaultValue = "0")int page) {
+    public String list(Model model, @RequestParam(value = "page", defaultValue = "0") int page) {
         Page<Question> paging = this.questionService.getList(page);
-        model.addAttribute("paging",paging);
+        model.addAttribute("paging", paging);
         return "question_list"; // 질문 목록 페이지를 렌더링
     }
 
