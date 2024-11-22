@@ -1,20 +1,58 @@
 <html layout:decorate="~{layout}">
+<!--
+    layout:decorate="~{layout}"는 Thymeleaf의 레이아웃 데코레이션 기능을 사용하여
+    공통 레이아웃 파일을 적용하는 부분입니다.
+    여기서는 "layout.html" 또는 지정된 파일을 기반으로 렌더링합니다.
+-->
 <div layout:fragment="content" class="container my-3">
+    <!--
+        layout:fragment="content"는 "layout.html"에 정의된 특정 영역(content)에
+        이 HTML 내용을 삽입하도록 지정합니다.
+        class="container my-3"는 Bootstrap의 CSS 클래스를 적용하여
+        반응형 레이아웃과 적절한 여백을 제공합니다.
+    -->
     <form th:action="@{/user/login}" method="post">
+        <!--
+            th:action="@{/user/login}"는 로그인 폼 제출 시 "/user/login" 경로로 POST 요청을 보냅니다.
+            Spring Security의 기본 로그인 처리 URL은 "/login"이지만, 이를 커스터마이징한 것입니다.
+        -->
         <div th:if="${param.error}">
-            <div class="alert alert-danger">
+            <!--
+                th:if="${param.error}"는 요청 파라미터에 "error" 값이 포함되어 있을 때만
+                아래의 내용을 렌더링합니다.
+                Spring Security는 로그인 실패 시 "error" 파라미터를 자동으로 전달합니다.
+            -->
+            <div class="alert alert-danger"> <!-- Bootstrap의 alert-danger 클래스를 사용하여 경고 메시지를 표시합니다. -->
                 사용자ID 또는 비밀번호를 확인해 주세요.
             </div>
         </div>
         <div class="mb-3">
+            <!-- mb-3는 Bootstrap 클래스이며, 하단 여백(margin-bottom)을 추가합니다. -->
             <label for="username" class="form-label">사용자ID</label>
+            <!--
+                <label> 태그는 접근성을 높이기 위해 <input> 필드와 연결됩니다.
+                for="username"은 아래의 <input> 태그의 id="username"과 연결되어 있습니다.
+            -->
             <input type="text" name="username" id="username" class="form-control">
+            <!--
+                name="username"은 로그인 요청 시 서버로 전달되는 파라미터 이름입니다.
+                class="form-control"은 Bootstrap 스타일을 적용하여 입력 필드 디자인을 개선합니다.
+            -->
         </div>
         <div class="mb-3">
             <label for="password" class="form-label">비밀번호</label>
+            <!-- <label> 태그와 <input> 태그를 동일하게 연결합니다. -->
             <input type="password" name="password" id="password" class="form-control">
+            <!--
+                type="password"는 입력한 비밀번호가 화면에 표시되지 않고 점으로 표시되도록 설정합니다.
+                name="password"는 서버로 전달되는 파라미터 이름입니다.
+            -->
         </div>
         <button type="submit" class="btn btn-primary">로그인</button>
+        <!--
+            type="submit"은 폼 데이터를 제출하는 버튼을 정의합니다.
+            class="btn btn-primary"는 Bootstrap의 버튼 스타일을 적용합니다.
+        -->
     </form>
 </div>
 </html>
