@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -14,6 +15,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration // 이 클래스가 설정 클래스임을 명시
 @EnableWebSecurity // Spring Security를 활성화
+@EnableMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
 
     /**
@@ -45,6 +47,11 @@ public class SecurityConfig {
                         .loginPage("/user/login")
                         // 로그인 성공 시 리디렉션할 기본 URL
                         .defaultSuccessUrl("/"))
+                .logout((logout)->logout
+                        .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout"))
+                        .logoutSuccessUrl("/")
+                        .invalidateHttpSession(true))
+
         ;
         // 필터 체인 반환
         return http.build();
