@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.mysite.sbb.question.Question;
 import org.mysite.sbb.user.SiteUser;
+import org.springframework.cglib.core.Local;
 
 import java.time.LocalDateTime;
 
@@ -26,4 +27,6 @@ public class Answer {
 
     @ManyToOne
     private SiteUser author;
+
+    private LocalDateTime localDateTime;
 }
